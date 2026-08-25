@@ -1,0 +1,14 @@
+.headerSection {
+  background-color: var(--inputs);
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+
+.headerContainer {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  margin-right: 450px;
+}
