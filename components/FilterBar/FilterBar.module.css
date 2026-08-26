@@ -1,1 +1,130 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  background-color: var(--inputs);
+  border-radius: 20px;
+  padding: 24px;
+  max-width: 360px;
+  min-height: 840px;
+}
 
+.inputLabel {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 40px;
+  gap: 8px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: var(--gray);
+}
+
+.inputField {
+  background-color: var(--white);
+  border-radius: 12px;
+  padding: 18px 218px 18px 20px;
+  max-width: 312px;
+  height: 56px;
+}
+
+.fieldsetWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 48px;
+}
+
+.formTitle {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 120%;
+  color: var(--main);
+}
+
+.fieldset {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+.legend {
+  margin-bottom: 8px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: var(--gray);
+  padding: 0;
+}
+
+.radioFieldLabel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: var(--main);
+}
+
+.radioInput {
+  display: none;
+}
+
+.customRadio {
+  position: relative;
+  display: block;
+  width: 24px;
+  height: 24px;
+  border-radius: 100%;
+  border: 1px var(--text) solid;
+}
+
+.radioInput:checked + .customRadio::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  width: 14px;
+  height: 14px;
+
+  border-radius: 50%;
+
+  transform: translate(-50%, -50%);
+  background-color: var(--text);
+}
+
+.btnWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.submitBtn {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: -0.01em;
+  color: var(--white);
+}
+
+.clearBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 56px;
+  border: 1px solid var(--gray-light);
+  border-radius: 200px;
+  padding: 16px 32px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: -0.01em;
+  color: var(--main);
+}

@@ -1,5 +1,5 @@
 .heroSection {
-  min-height: 864px;
+  height: 100vh;
   padding-top: 284px;
   background-image: url("/hero-background.jpg");
   background-size: cover;
