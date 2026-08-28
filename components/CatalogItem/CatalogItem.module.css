@@ -1,8 +1,7 @@
 .catalogItemContainer {
-  /* max-width: 888px; */
   border-radius: 16px;
-  padding: 24px;
-  min-height: 312px;
+  padding: 24px 97px 24px 24px;
+  /* min-height: 312px; */
   background-color: var(--inputs);
 }
 
@@ -23,12 +22,106 @@
   width: 100%;
 }
 
-.namePriceContainer {
+.nameContainer {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  margin-bottom: 8px;
+}
+
+.cardName {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 133%;
+  color: var(--main);
 }
 
 .infoContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  flex: 1;
+  min-width: 0;
+}
+
+.reviewsContainer {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.iconContainer {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.starIcon {
+  fill: var(--rating);
+}
+
+.mapIcon {
+  stroke: var(--main);
+}
+
+.reviwesText {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: var(--main);
+}
+
+.description {
+  max-width: 524px;
+  /* min-width: 0; */
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--text);
+}
+
+.cardList {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.listItem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  background: var(--badges);
+  border-radius: 100px;
+  padding: 12px 18px;
+  min-width: 109px;
+  height: 48px;
+}
+
+.itemText {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  text-align: center;
+  color: var(--main);
+}
+
+.itemIcon {
+  stroke-width: var(--main);
+}
+
+.datailsPageLink {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 173px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: -0.01em;
+  color: var(--white);
 }

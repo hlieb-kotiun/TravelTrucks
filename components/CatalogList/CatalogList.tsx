@@ -9,9 +9,9 @@ interface CatalogListProps {
 const CatalogList = ({ campers }: CatalogListProps) => {
   return (
     <ul className={css.catalogList}>
-      {campers.map((item, idx) => {
+      {campers.map((item) => {
         return (
-          <li key={idx}>
+          <li key={item.id}>
             <CatalogItem camper={item} />
           </li>
         );
