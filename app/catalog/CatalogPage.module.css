@@ -2,3 +2,8 @@
   padding-top: 48px;
   padding-bottom: 52px;
 }
+
+.catalogPageContainer {
+  display: flex;
+  gap: 65px;
+}

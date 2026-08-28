@@ -1,0 +1,34 @@
+.catalogItemContainer {
+  /* max-width: 888px; */
+  border-radius: 16px;
+  padding: 24px;
+  min-height: 312px;
+  background-color: var(--inputs);
+}
+
+.cardWrapper {
+  display: flex;
+  gap: 24px;
+}
+
+.cardImage {
+  border-radius: 16px;
+  width: 219px;
+  height: 240px;
+}
+
+.cardContentContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.namePriceContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.infoContainer {
+}

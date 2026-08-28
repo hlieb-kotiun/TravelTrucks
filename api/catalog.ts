@@ -1,3 +1,4 @@
+import { ApiResponse } from "@/types/types";
 import axios from "axios";
 
 const api = axios.create({
@@ -7,15 +8,27 @@ const api = axios.create({
 export const getCampers = async (
   page: number = 1,
   perPage: number = 5,
-  location: string,
-  form: string,
-  transmission: string,
-  engine: string,
+  location?: string,
+  form?: string,
+  transmission?: string,
+  engine?: string,
 ) => {
   try {
-    const response = await api.get("/campers", {
-      params: {},
+    const { data } = await api.get<ApiResponse>("/campers", {
+      params: {
+        page,
+        perPage,
+        location,
+        form,
+        transmission,
+        engine,
+      },
     });
-    return response;
-  } catch {}
+
+    return data;
+  } catch (error) {
+    throw new Error("Something went wrong by creating new note!", {
+      cause: error,
+    });
+  }
 };
