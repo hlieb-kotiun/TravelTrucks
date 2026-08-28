@@ -1,16 +1,19 @@
 "use client";
 import { Field, Form, Formik, FormikHandlers, FormikHelpers } from "formik";
 import css from "./FilterBar.module.css";
-import { CamperForm, Engine, Transmission } from "@/types/types";
+import {
+  CamperForm,
+  Engine,
+  FilterFromValues,
+  Transmission,
+} from "@/types/types";
+import { IoMdClose } from "react-icons/io";
 
-interface FilterFromValues {
-  location: string;
-  forms: CamperForm;
-  transmissions: Transmission;
-  engines: Engine;
+interface FilterBarProps {
+  onSearch: (values: FilterFromValues) => void;
 }
 
-const FilterBar = () => {
+const FilterBar = ({ onSearch }: FilterBarProps) => {
   const initialValues: FilterFromValues = {
     location: "",
     forms: "panel_van",
@@ -22,7 +25,7 @@ const FilterBar = () => {
     values: FilterFromValues,
     actions: FormikHelpers<FilterFromValues>,
   ) => {
-    console.log(values);
+    onSearch(values);
   };
 
   return (
@@ -160,7 +163,8 @@ const FilterBar = () => {
             Search
           </button>
           <button className={css.clearBtn} type="reset">
-            X Clear filters
+            <IoMdClose width="24" height="24" className={css.clearBtnIcon} />
+            Clear filters
           </button>
         </div>
       </Form>

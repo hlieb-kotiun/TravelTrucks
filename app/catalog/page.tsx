@@ -10,7 +10,7 @@ const CatalogPage = async () => {
   const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery({
-    queryKey: ["note"],
+    queryKey: ["campers"],
     queryFn: () => getCampers(1, 5),
   });
   return (

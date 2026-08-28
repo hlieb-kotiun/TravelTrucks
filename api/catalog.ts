@@ -7,7 +7,7 @@ const api = axios.create({
 
 export const getCampers = async (
   page: number = 1,
-  perPage: number = 5,
+  perPage: number = 4,
   location?: string,
   form?: string,
   transmission?: string,

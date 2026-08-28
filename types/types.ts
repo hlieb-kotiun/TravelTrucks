@@ -41,3 +41,10 @@ export interface Filters {
   transmissions: Transmission[];
   engines: Engine[];
 }
+
+export interface FilterFromValues {
+  location: string;
+  forms: CamperForm;
+  transmissions: Transmission;
+  engines: Engine;
+}

@@ -1,9 +1,13 @@
 import Image from "next/image";
 import css from "./NoContent.module.css";
-import Link from "next/link";
 import { IoMdClose } from "react-icons/io";
+import { ApiResponse } from "@/types/types";
 
-const NoContent = () => {
+interface Props {
+  refetch: () => void;
+}
+
+const NoContent = ({ refetch }: Props) => {
   return (
     <div className={css.noContent}>
       <Image
@@ -23,7 +27,7 @@ const NoContent = () => {
           <IoMdClose width="24" height="24" className={css.clearBtnIcon} />
           Clear filters
         </button>
-        <button className={`greenBtn ${css.refetchBtn}`}>
+        <button onClick={refetch} className={`greenBtn ${css.refetchBtn}`}>
           View all campers
         </button>
       </div>

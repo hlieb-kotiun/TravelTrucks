@@ -1,27 +1,76 @@
 "use client";
 import FilterBar from "@/components/FilterBar/FilterBar";
 import css from "./CatalogPage.module.css";
-import { keepPreviousData, useQuery } from "@tanstack/react-query";
+import {
+  keepPreviousData,
+  useInfiniteQuery,
+  useQuery,
+} from "@tanstack/react-query";
 import { getCampers } from "@/api/catalog";
 import CatalogList from "@/components/CatalogList/CatalogList";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Loader from "@/components/Modal/Loader";
 import NoContent from "@/components/NoContent/NoContent";
+import {
+  CamperForm,
+  Engine,
+  FilterFromValues,
+  Transmission,
+} from "@/types/types";
+
+interface AppliedFilters {
+  location?: string;
+  form?: CamperForm;
+  transmission?: Transmission;
+  engine?: Engine;
+}
 
 const CatalogPageClient = () => {
+  const [filters, setFilters] = useState<AppliedFilters>({});
+
   const {
     data: campers,
     isLoading,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
     refetch,
-    isError,
-  } = useQuery({
-    queryKey: ["note"],
-    queryFn: () => {
-      return getCampers();
+  } = useInfiniteQuery({
+    queryKey: ["campers", filters],
+
+    queryFn: ({ pageParam }) => {
+      return getCampers(
+        pageParam,
+        4,
+        filters.location,
+        filters.form,
+        filters.transmission,
+        filters.engine,
+      );
     },
+
+    initialPageParam: 1,
+
+    getNextPageParam: (lastPage) => {
+      if (lastPage.page < lastPage.totalPages) {
+        return lastPage.page + 1;
+      }
+
+      return undefined;
+    },
+
     refetchOnMount: false,
-    placeholderData: keepPreviousData,
   });
+
+  const camperList = campers?.pages.flatMap((page) => page.campers) ?? [];
+
+  const handleSearchWithFilters = (values: FilterFromValues) =>
+    setFilters({
+      location: values.location.trim() || undefined,
+      form: values.forms,
+      transmission: values.transmissions,
+      engine: values.engines,
+    });
 
   useEffect(() => {
     if (!isLoading) return;
@@ -36,12 +85,16 @@ const CatalogPageClient = () => {
     <main>
       <section className={css.catalogPageSection}>
         <div className={`container ${css.catalogPageContainer}`}>
-          {isLoading && <Loader />}
-          <FilterBar />
-          {campers?.campers && campers?.campers.length > 1 ? (
-            <CatalogList campers={campers?.campers ?? []} />
+          {(isLoading || isFetchingNextPage) && <Loader />}
+          <FilterBar onSearch={handleSearchWithFilters} />
+          {camperList.length > 0 ? (
+            <CatalogList
+              campers={camperList}
+              fetchNextPage={fetchNextPage}
+              hasNextPage={hasNextPage}
+            />
           ) : (
-            <NoContent />
+            <NoContent refetch={refetch} />
           )}
         </div>
       </section>
