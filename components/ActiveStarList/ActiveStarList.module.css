@@ -1,0 +1,19 @@
+.list {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.listItem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.active {
+  fill: var(--rating);
+}
+
+.inactive {
+  fill: var(--gray-light);
+}

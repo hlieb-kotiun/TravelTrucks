@@ -1,0 +1,49 @@
+.cardContainer {
+  border-radius: 16px;
+  padding: 16px;
+  max-width: 623px;
+  height: 180px;
+  background-color: var(--inputs);
+}
+
+.reviewerContainer {
+  display: flex;
+  gap: 16px;
+  /* height: 60px; */
+}
+
+.profile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 60px;
+  width: 60px;
+  height: 60px;
+  background-color: var(--white);
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 133%;
+  color: var(--grey-green);
+}
+
+.nameContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: space-around;
+  margin-bottom: 16px;
+}
+
+.name {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  color: var(--main);
+}
+
+.comment {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: var(--text);
+}

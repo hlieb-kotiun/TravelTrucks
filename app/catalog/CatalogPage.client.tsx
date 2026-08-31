@@ -6,7 +6,7 @@ import {
   useInfiniteQuery,
   useQuery,
 } from "@tanstack/react-query";
-import { getCampers } from "@/api/catalog";
+import { getCampers } from "@/lib/api/catalog";
 import CatalogList from "@/components/CatalogList/CatalogList";
 import { useEffect, useState } from "react";
 import Loader from "@/components/Modal/Loader";

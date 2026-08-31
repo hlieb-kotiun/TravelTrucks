@@ -14,4 +14,9 @@
   line-height: 150%;
   letter-spacing: -0.01em;
   color: var(--main);
+  transition: border-color 0.3s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+
+.btn:hover {
+  border-color: var(--green-hover);
 }

@@ -1,0 +1,57 @@
+.infoContainer {
+  border-radius: 16px;
+  padding: 24px;
+  max-width: 650px;
+  min-height: 304px;
+  background-color: var(--inputs);
+}
+
+.cardName {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 133%;
+  color: var(--main);
+  margin-bottom: 8px;
+}
+
+.reviewsContainer {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 16px;
+}
+
+.cardPrice {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 133%;
+  color: var(--main);
+  margin-bottom: 24px;
+}
+
+.iconContainer {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.starIcon {
+  fill: var(--rating);
+}
+
+.mapIcon {
+  stroke: var(--main);
+}
+
+.reviwesText {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: var(--main);
+}
+
+.description {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: var(--text);
+}

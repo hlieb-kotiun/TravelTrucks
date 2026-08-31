@@ -1,0 +1,21 @@
+.section {
+  padding-top: 64px;
+  padding-bottom: 64px;
+}
+
+.container1 {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 88px;
+}
+
+.infoCards {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.container2 {
+  display: flex;
+  gap: 48px;
+}

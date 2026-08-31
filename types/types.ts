@@ -48,3 +48,42 @@ export interface FilterFromValues {
   transmissions: Transmission;
   engines: Engine;
 }
+
+export interface CamperImage {
+  id: string;
+  camperId: string;
+  thumb: string;
+  original: string;
+  order: number;
+}
+
+export interface CamperDetails {
+  id: string;
+  name: string;
+  price: number;
+  rating: number;
+  totalReviews: number;
+  location: string;
+  description: string;
+  form: CamperForm;
+  length: string;
+  width: string;
+  height: string;
+  tank: string;
+  consumption: string;
+  transmission: Transmission;
+  engine: Engine;
+  amenities: string[];
+  gallery: CamperImage[];
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface Review {
+  id: string;
+  camperId: string;
+  reviewer_name: string;
+  reviewer_rating: number;
+  comment: string;
+  createdAt: string;
+}

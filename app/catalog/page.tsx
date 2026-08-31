@@ -4,7 +4,7 @@ import {
   QueryClient,
 } from "@tanstack/react-query";
 import CatalogPageClient from "./CatalogPage.client";
-import { getCampers } from "@/api/catalog";
+import { getCampers } from "@/lib/api/catalog";
 
 const CatalogPage = async () => {
   const queryClient = new QueryClient();

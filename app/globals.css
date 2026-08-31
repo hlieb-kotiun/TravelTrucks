@@ -102,4 +102,9 @@ input {
   padding: 16px 0;
   height: 56px;
   background: var(--grey-green);
+  transition: background-color 0.3s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+
+.greenBtn:hover {
+  background-color: var(--green-hover);
 }
