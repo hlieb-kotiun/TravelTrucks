@@ -1,25 +1,23 @@
 "use client";
-import { Field, Form, Formik, FormikHandlers, FormikHelpers } from "formik";
+import { Field, Form, Formik, FormikHelpers } from "formik";
 import css from "./FilterBar.module.css";
-import {
-  CamperForm,
-  Engine,
-  FilterFromValues,
-  Transmission,
-} from "@/types/types";
+import { FilterFromValues, Filters } from "@/types/types";
 import { IoMdClose } from "react-icons/io";
 
 interface FilterBarProps {
+  filters: Filters | undefined;
   onSearch: (values: FilterFromValues) => void;
 }
 
-const FilterBar = ({ onSearch }: FilterBarProps) => {
+const FilterBar = ({ filters, onSearch }: FilterBarProps) => {
   const initialValues: FilterFromValues = {
     location: "",
     forms: "panel_van",
     transmissions: "automatic",
     engines: "petrol",
   };
+
+  console.log("filters : ", filters);
 
   const handleSubmitForm = (
     values: FilterFromValues,
@@ -46,116 +44,75 @@ const FilterBar = ({ onSearch }: FilterBarProps) => {
           <fieldset className={css.fieldset}>
             <legend className={css.legend}>Camper form</legend>
 
-            <label className={css.radioFieldLabel}>
-              <Field
-                className={css.radioInput}
-                type="radio"
-                name="forms"
-                value="alcove"
-              />
-              <span className={css.customRadio} />
-              <span>Alcove</span>
-            </label>
+            {filters?.forms.map((value, idx) => {
+              const firstChar = value[0];
 
-            <label className={css.radioFieldLabel}>
-              <Field
-                className={css.radioInput}
-                type="radio"
-                name="forms"
-                value="panel_van"
-              />
-              <span className={css.customRadio} />
-              Panel Van
-            </label>
-
-            <label className={css.radioFieldLabel}>
-              <Field
-                className={css.radioInput}
-                type="radio"
-                name="forms"
-                value="integrated"
-              />
-              <span className={css.customRadio} />
-              Integrated
-            </label>
-            <label className={css.radioFieldLabel}>
-              <Field
-                className={css.radioInput}
-                type="radio"
-                name="forms"
-                value="semi_integrated"
-              />
-              <span className={css.customRadio} />
-              Semi Integrated
-            </label>
+              return (
+                <label key={idx} className={css.radioFieldLabel}>
+                  <Field
+                    className={css.radioInput}
+                    type="radio"
+                    name="forms"
+                    value={value}
+                  />
+                  <span className={css.customRadio} />
+                  <span>
+                    {value
+                      .replace(firstChar, firstChar.toUpperCase())
+                      .replace("_", " ")}
+                  </span>
+                </label>
+              );
+            })}
           </fieldset>
 
           <fieldset className={css.fieldset}>
             <legend className={css.legend}>Engine</legend>
-            <label className={css.radioFieldLabel}>
-              <Field
-                className={css.radioInput}
-                type="radio"
-                name="engines"
-                value="diesel"
-              />
-              <span className={css.customRadio} />
-              Diesel
-            </label>
-            <label className={css.radioFieldLabel}>
-              <Field
-                className={css.radioInput}
-                type="radio"
-                name="engines"
-                value="petrol"
-              />
-              <span className={css.customRadio} />
-              Petrol
-            </label>
-            <label className={css.radioFieldLabel}>
-              <Field
-                className={css.radioInput}
-                type="radio"
-                name="engines"
-                value="hybrid"
-              />
-              <span className={css.customRadio} />
-              Hybrid
-            </label>
-            <label className={css.radioFieldLabel}>
-              <Field
-                className={css.radioInput}
-                type="radio"
-                name="engines"
-                value="electric"
-              />
-              <span className={css.customRadio} />
-              Electric
-            </label>
+
+            {filters?.engines.map((value, idx) => {
+              const firstChar = value[0];
+
+              return (
+                <label key={idx} className={css.radioFieldLabel}>
+                  <Field
+                    className={css.radioInput}
+                    type="radio"
+                    name="engines"
+                    value={value}
+                  />
+                  <span className={css.customRadio} />
+                  <span>
+                    {value
+                      .replace(firstChar, firstChar.toUpperCase())
+                      .replace("_", " ")}
+                  </span>
+                </label>
+              );
+            })}
           </fieldset>
 
           <fieldset className={css.fieldset}>
             <legend className={css.legend}>Transmission</legend>
-            <label className={css.radioFieldLabel}>
-              <Field
-                className={css.radioInput}
-                type="radio"
-                name="transmissions"
-                value="automatic"
-              />
-              <span className={css.customRadio} />
-              Automatic
-            </label>
-            <label className={css.radioFieldLabel}>
-              <Field
-                className={css.radioInput}
-                type="radio"
-                name="transmissions"
-                value="manual"
-              />
-              <span className={css.customRadio} />
-              Manual
-            </label>
+            {filters?.transmissions.map((value, idx) => {
+              const firstChar = value[0];
+
+              return (
+                <label key={idx} className={css.radioFieldLabel}>
+                  <Field
+                    className={css.radioInput}
+                    type="radio"
+                    name="transmissions"
+                    value={value}
+                  />
+                  <span className={css.customRadio} />
+                  <span>
+                    {value
+                      .replace(firstChar, firstChar.toUpperCase())
+                      .replace("_", " ")}
+                  </span>
+                </label>
+              );
+            })}
           </fieldset>
         </div>
         <div className={css.btnWrapper}>
