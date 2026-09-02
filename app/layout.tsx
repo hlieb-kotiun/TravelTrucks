@@ -4,6 +4,7 @@ import "./globals.css";
 import "./container.css";
 import Header from "@/components/Header/Header";
 import TanStackQueryProvider from "@/components/TanStackQueryProvider/TanStackQueryProvider";
+import { Toaster } from "react-hot-toast";
 
 const manrope = Manrope({
   variable: "--font-family",
@@ -27,6 +28,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <body>
           <Header />
           {children}
+          <Toaster />
         </body>
       </TanStackQueryProvider>
     </html>

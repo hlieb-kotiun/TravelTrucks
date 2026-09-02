@@ -36,7 +36,6 @@ export const getCampers = async (
 export const getCamperById = async (id: string): Promise<CamperDetails> => {
   try {
     const { data } = await api.get<CamperDetails>(`/campers/${id}`);
-    console.log("res : ", data);
     return data;
   } catch (error) {
     throw new Error("Something went wrong by creating new note!", {
@@ -48,8 +47,30 @@ export const getCamperById = async (id: string): Promise<CamperDetails> => {
 export const getCamperReviews = async (id: string): Promise<Review[]> => {
   try {
     const { data } = await api.get<Review[]>(`/campers/${id}/reviews`);
-    console.log("reviews data : ", data);
     return data;
+  } catch (error) {
+    throw new Error("Something went wrong by creating new note!", {
+      cause: error,
+    });
+  }
+};
+
+export const bookCamper = async (
+  id: string,
+  name: string,
+  email: string,
+): Promise<{ message: string }> => {
+  try {
+    const res = await api.post<{ message: string }>(
+      `/campers/${id}/booking-requests`,
+      {
+        name,
+        email,
+      },
+    );
+    console.log(res);
+
+    return res.data;
   } catch (error) {
     throw new Error("Something went wrong by creating new note!", {
       cause: error,

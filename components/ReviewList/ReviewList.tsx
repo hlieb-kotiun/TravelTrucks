@@ -11,7 +11,7 @@ interface ReviewListProps {
 const ReviewList = ({ reviews }: ReviewListProps) => {
   return (
     <div>
-      <h3 className={css.title}>Reviews</h3>
+     
       <ul className={css.list}>
         {reviews?.map((item) => {
           return <ReviewCard key={item.id} review={item} />;
