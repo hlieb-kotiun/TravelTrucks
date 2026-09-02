@@ -44,9 +44,9 @@ export interface Filters {
 
 export interface FilterFromValues {
   location: string;
-  forms: CamperForm;
-  transmissions: Transmission;
-  engines: Engine;
+  forms: CamperForm | "";
+  transmissions: Transmission | "";
+  engines: Engine | "";
 }
 
 export interface CamperImage {
