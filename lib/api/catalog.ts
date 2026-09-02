@@ -1,4 +1,4 @@
-import { ApiResponse, CamperDetails, Review } from "@/types/types";
+import { ApiResponse, CamperDetails, Filters, Review } from "@/types/types";
 import axios from "axios";
 
 const api = axios.create({
@@ -71,6 +71,19 @@ export const bookCamper = async (
     console.log(res);
 
     return res.data;
+  } catch (error) {
+    throw new Error("Something went wrong by creating new note!", {
+      cause: error,
+    });
+  }
+};
+
+export const getFilters = async (): Promise<Filters> => {
+  try {
+    const { data } = await api.get<Filters>(`/campers/filters`);
+    console.log(data);
+
+    return data;
   } catch (error) {
     throw new Error("Something went wrong by creating new note!", {
       cause: error,

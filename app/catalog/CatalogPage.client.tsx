@@ -6,7 +6,7 @@ import {
   useInfiniteQuery,
   useQuery,
 } from "@tanstack/react-query";
-import { getCampers } from "@/lib/api/catalog";
+import { getCampers, getFilters } from "@/lib/api/catalog";
 import CatalogList from "@/components/CatalogList/CatalogList";
 import { useEffect, useState } from "react";
 import Loader from "@/components/Modal/Loader";
@@ -27,6 +27,15 @@ interface AppliedFilters {
 
 const CatalogPageClient = () => {
   const [filters, setFilters] = useState<AppliedFilters>({});
+
+  const { data: searchFilters } = useQuery({
+    queryKey: ["filters"],
+    queryFn: () => {
+      return getFilters();
+    },
+    refetchOnMount: false,
+    placeholderData: keepPreviousData,
+  });
 
   const {
     data: campers,
@@ -86,7 +95,10 @@ const CatalogPageClient = () => {
       <section className={css.catalogPageSection}>
         <div className={`container ${css.catalogPageContainer}`}>
           {(isLoading || isFetchingNextPage) && <Loader />}
-          <FilterBar onSearch={handleSearchWithFilters} />
+          <FilterBar
+            filters={searchFilters}
+            onSearch={handleSearchWithFilters}
+          />
           {camperList.length > 0 ? (
             <CatalogList
               campers={camperList}

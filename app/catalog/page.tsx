@@ -4,7 +4,7 @@ import {
   QueryClient,
 } from "@tanstack/react-query";
 import CatalogPageClient from "./CatalogPage.client";
-import { getCampers } from "@/lib/api/catalog";
+import { getCampers, getFilters } from "@/lib/api/catalog";
 
 const CatalogPage = async () => {
   const queryClient = new QueryClient();
@@ -13,6 +13,18 @@ const CatalogPage = async () => {
     queryKey: ["campers"],
     queryFn: () => getCampers(1, 5),
   });
+
+  await Promise.all([
+    queryClient.prefetchQuery({
+      queryKey: ["campers"],
+      queryFn: () => getCampers(1, 5),
+    }),
+
+    queryClient.prefetchQuery({
+      queryKey: ["filters"],
+      queryFn: () => getFilters(),
+    }),
+  ]);
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
       <CatalogPageClient />
