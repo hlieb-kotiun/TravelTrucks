@@ -40,9 +40,11 @@ const CamperPageClient = () => {
             <VehicleDetails camper={camper} />
           </div>
         </div>
+
+        <h3 className={css.title}>Reviews</h3>
         <div className={css.container2}>
           <ReviewList reviews={reviews} />
-          <BookingForm />
+          <BookingForm id={id} />
         </div>
       </div>
     </section>

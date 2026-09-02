@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -rn \"bookCamper\\\\|booking-request\\\\|BookingForm\\\\|NEXT_PUBLIC_API\\\\|baseURL\\\\|process.env\" --include=\"*.ts\" --include=\"*.tsx\" -not -path \"*/node_modules/*\" .)"
+    ]
+  }
+}

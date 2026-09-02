@@ -1,19 +1,35 @@
 "use client";
 
-import { Field, Form, Formik, FormikHelpers } from "formik";
+import { ErrorMessage, Field, Form, Formik, FormikHelpers } from "formik";
 import s from "./BookingForm.module.css";
+import { IoAlertCircleOutline } from "react-icons/io5";
 import * as Yup from "yup";
+import { bookCamper } from "@/lib/api/catalog";
+import toast from "react-hot-toast";
 
 interface InitialValuesType {
   name: string;
   email: string;
 }
 
-const BookingForm = () => {
+interface BookingFormProps {
+  id: string;
+}
+
+const BookingForm = ({ id }: BookingFormProps) => {
   const initialValues = {
     name: "",
     email: "",
   };
+
+  // const sendRequest = async () => {
+  //   try {
+  //     const res = await bookCamper(id);
+  //     toast.success(res.message);
+  //   } catch {
+  //     toast.error("Oops, something went wrong!");
+  //   }
+  // };
 
   const bookingSchema = Yup.object().shape({
     name: Yup.string()
@@ -29,11 +45,20 @@ const BookingForm = () => {
       .required("Please enter your email."),
   });
 
-  const handleSubmit = (
+  const handleSubmit = async (
     values: InitialValuesType,
     helper: FormikHelpers<InitialValuesType>,
   ) => {
     console.log("Request sent!");
+    const name = values.name;
+    const email = values.email;
+    try {
+      const res = await bookCamper(id, name, email);
+      toast.success(res.message);
+      helper.resetForm();
+    } catch {
+      toast.error("Oops, something went wrong!");
+    }
   };
 
   return (
@@ -47,29 +72,49 @@ const BookingForm = () => {
         onSubmit={handleSubmit}
         initialValues={initialValues}
       >
-        <Form className={s.form}>
-          <div className={s.inputsContainer}>
-            <label>
-              <Field
-                className={s.input}
-                type="text"
-                name="name"
-                placeholder="Name*"
-              />
-            </label>
-            <label>
-              <Field
-                className={s.input}
-                type="email"
-                name="email"
-                placeholder="Email*"
-              />
-            </label>
-          </div>
-          <button className={`greenBtn ${s.sendBtn}`} type="submit">
-            Send
-          </button>
-        </Form>
+        {({ errors, touched }) => (
+          <Form className={s.form}>
+            <div className={s.inputsContainer}>
+              <label>
+                <Field
+                  className={`${s.input} ${
+                    touched.name && errors.name ? s.inputError : ""
+                  }`}
+                  type="text"
+                  name="name"
+                  placeholder="Name*"
+                />
+
+                <ErrorMessage
+                  name="name"
+                  component="p"
+                  className={s.errorMessage}
+                />
+              </label>
+
+              <label>
+                <Field
+                  className={`${s.input} ${
+                    touched.email && errors.email ? s.inputError : ""
+                  }`}
+                  type="email"
+                  name="email"
+                  placeholder="Email*"
+                />
+
+                <ErrorMessage
+                  name="email"
+                  component="p"
+                  className={s.errorMessage}
+                />
+              </label>
+            </div>
+
+            <button className={`greenBtn ${s.sendBtn}`} type="submit">
+              Send
+            </button>
+          </Form>
+        )}
       </Formik>
     </div>
   );

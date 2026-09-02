@@ -22,8 +22,6 @@ interface GalleryProps {
 export default function Gallery({ gallery }: GalleryProps) {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
 
-  console.log(gallery);
-
   const swiperStyles = {
     "--swiper-navigation-color": "transparent",
     "--swiper-pagination-color": "transparent",
