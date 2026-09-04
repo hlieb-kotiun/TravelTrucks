@@ -1,17 +1,13 @@
 "use client";
-import Link from "next/link";
 import HeaderNav from "../HeaderNav/HeaderNav";
 import css from "./Header.module.css";
+import Logo from "../Logo/Logo";
 
 const Header = () => {
   return (
     <header className={css.headerSection}>
       <div className={`container ${css.headerContainer}`}>
-        {/* <p className={css.logo}>TravelTrack</p> */}
-        <Link href="/">
-          {/* <svg className="icon icon-TravelTrucks"> */}
-          <svg />
-        </Link>
+        <Logo />
         <HeaderNav />
       </div>
     </header>
