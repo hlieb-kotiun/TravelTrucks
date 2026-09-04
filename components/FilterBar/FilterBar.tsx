@@ -18,8 +18,6 @@ const FilterBar = ({ filters, onSearch, onReset }: FilterBarProps) => {
     engines: "",
   };
 
-  console.log("filters : ", filters);
-
   const handleSubmitForm = (
     values: FilterFromValues,
     actions: FormikHelpers<FilterFromValues>,

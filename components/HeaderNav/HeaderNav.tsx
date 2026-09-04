@@ -6,7 +6,6 @@ import { usePathname } from "next/navigation";
 
 const HeaderNav = () => {
   const path = usePathname();
-  console.log(path);
 
   return (
     <div>
@@ -22,7 +21,7 @@ const HeaderNav = () => {
           </li>
           <li>
             <Link
-              className={`${css.navListLink} ${path === "/catalog" && css.navListActiveLink}`}
+              className={`${css.navListLink} ${path.includes("catalog") && css.navListActiveLink}`}
               href="/catalog"
             >
               Catalog

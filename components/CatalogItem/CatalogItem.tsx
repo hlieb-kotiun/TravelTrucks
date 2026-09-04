@@ -10,8 +10,6 @@ interface CatalogItemProps {
 }
 
 const CatalogItem = ({ camper }: CatalogItemProps) => {
-  console.log(camper);
-
   return (
     <div className={css.catalogItemContainer}>
       <div className={css.cardWrapper}>

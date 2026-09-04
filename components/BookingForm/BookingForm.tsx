@@ -49,7 +49,6 @@ const BookingForm = ({ id }: BookingFormProps) => {
     values: InitialValuesType,
     helper: FormikHelpers<InitialValuesType>,
   ) => {
-    console.log("Request sent!");
     const name = values.name;
     const email = values.email;
     try {

@@ -68,7 +68,6 @@ export const bookCamper = async (
         email,
       },
     );
-    console.log(res);
 
     return res.data;
   } catch (error) {
@@ -81,7 +80,6 @@ export const bookCamper = async (
 export const getFilters = async (): Promise<Filters> => {
   try {
     const { data } = await api.get<Filters>(`/campers/filters`);
-    console.log(data);
 
     return data;
   } catch (error) {
