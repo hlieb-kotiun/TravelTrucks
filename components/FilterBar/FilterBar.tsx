@@ -7,14 +7,15 @@ import { IoMdClose } from "react-icons/io";
 interface FilterBarProps {
   filters: Filters | undefined;
   onSearch: (values: FilterFromValues) => void;
+  onReset: () => void;
 }
 
-const FilterBar = ({ filters, onSearch }: FilterBarProps) => {
+const FilterBar = ({ filters, onSearch, onReset }: FilterBarProps) => {
   const initialValues: FilterFromValues = {
     location: "",
-    forms: "panel_van",
-    transmissions: "automatic",
-    engines: "petrol",
+    forms: "",
+    transmissions: "",
+    engines: "",
   };
 
   console.log("filters : ", filters);
@@ -119,7 +120,7 @@ const FilterBar = ({ filters, onSearch }: FilterBarProps) => {
           <button className={`greenBtn ${css.submitBtn}`} type="submit">
             Search
           </button>
-          <button className={css.clearBtn} type="reset">
+          <button className={css.clearBtn} type="button" onClick={onReset}>
             <IoMdClose width="24" height="24" className={css.clearBtnIcon} />
             Clear filters
           </button>

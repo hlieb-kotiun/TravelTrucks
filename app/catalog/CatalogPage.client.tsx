@@ -27,6 +27,7 @@ interface AppliedFilters {
 
 const CatalogPageClient = () => {
   const [filters, setFilters] = useState<AppliedFilters>({});
+  const [filterBarKey, setFilterBarKey] = useState(0);
 
   const { data: searchFilters } = useQuery({
     queryKey: ["filters"],
@@ -76,10 +77,15 @@ const CatalogPageClient = () => {
   const handleSearchWithFilters = (values: FilterFromValues) =>
     setFilters({
       location: values.location.trim() || undefined,
-      form: values.forms,
-      transmission: values.transmissions,
-      engine: values.engines,
+      form: values.forms || undefined,
+      transmission: values.transmissions || undefined,
+      engine: values.engines || undefined,
     });
+
+  const handleResetFilters = () => {
+    setFilters({});
+    setFilterBarKey((prev) => prev + 1);
+  };
 
   useEffect(() => {
     if (!isLoading) return;
@@ -96,8 +102,10 @@ const CatalogPageClient = () => {
         <div className={`container ${css.catalogPageContainer}`}>
           {(isLoading || isFetchingNextPage) && <Loader />}
           <FilterBar
+            key={filterBarKey}
             filters={searchFilters}
             onSearch={handleSearchWithFilters}
+            onReset={handleResetFilters}
           />
           {camperList.length > 0 ? (
             <CatalogList
@@ -106,7 +114,7 @@ const CatalogPageClient = () => {
               hasNextPage={hasNextPage}
             />
           ) : (
-            <NoContent refetch={refetch} />
+            <NoContent refetch={refetch} onReset={handleResetFilters} />
           )}
         </div>
       </section>

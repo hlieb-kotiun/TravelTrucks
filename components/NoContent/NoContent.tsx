@@ -5,9 +5,10 @@ import { ApiResponse } from "@/types/types";
 
 interface Props {
   refetch: () => void;
+  onReset: () => void;
 }
 
-const NoContent = ({ refetch }: Props) => {
+const NoContent = ({ refetch, onReset }: Props) => {
   return (
     <div className={css.noContent}>
       <Image
@@ -23,7 +24,7 @@ const NoContent = ({ refetch }: Props) => {
         adjusting yoursearch or clearing some filters.
       </p>
       <div className={css.btnContainer}>
-        <button className={css.clearBtn}>
+        <button onClick={onReset} className={css.clearBtn}>
           <IoMdClose width="24" height="24" className={css.clearBtnIcon} />
           Clear filters
         </button>
